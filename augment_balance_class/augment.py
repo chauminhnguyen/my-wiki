@@ -42,10 +42,13 @@ class Dataset:
         self.class_clust[class_name].append((img_name, gt_name))
         
     def __getitem__(self, index):
-        img_name, gt_name, class_name = self.data_lst[index]
-        img = cv2.imread(img_name)
-        gt = json.load(fp=open(gt_name))
-        return img_name, img, gt
+        img_name, gt_name = self.data_lst[index]
+        # img = cv2.imread(img_name)
+        # gt = json.load(fp=open(gt_name))
+        return img_name, gt_name
+
+    def __len__(self):
+        return len(self.data_lst)
 
 
 class Augmentation:
@@ -149,9 +152,8 @@ class Augment_Manager:
         for img_name_aug in img_name_aug_arr:
             self.data.add_sample(img_name_aug, img_name_aug + '.json')
         self.class_count = self.data.get_class_count()
-        
 
-    def augment(self, aug_path):
+    def balance(self, aug_path):
         '''
         :param aug_path: path to save augmented data
         :param aug_num: number of augmented data
@@ -159,17 +161,17 @@ class Augment_Manager:
         if not os.path.exists(aug_path):
             os.makedirs(aug_path)
 
-        number_of_basic_aug = self.augmentation.number_of_basic_aug()
+        number_of_basic_aug_method = self.augmentation.number_of_basic_aug()
         
         for class_name in self.class_count:
             print('Augmenting class: ' + class_name)
             if self.checkIf_augment(class_name):
                 data_lst = self.data.get_samples_by_cls(class_name)
-                number_of_basic_aug_img = len(data_lst) * number_of_basic_aug
+                number_of_basic_aug_img = len(data_lst) * number_of_basic_aug_method
                 remain = self.max_class_count - number_of_basic_aug_img
-                # If use all the basic augmentation techniques makes 
+                # If use all the basic augmentation techniques make 
                 # the number of augmented data larger than the number of samples in the max class, 
-                # then clamb tthe aug_num
+                # then clamb the aug_num
                 if remain < 0:
                     basic_aug_num = self.max_class_count - len(data_lst)
                     img_name_aug_arr = self.augmentation.augment_basic_data(data_lst, aug_path, basic_aug_num)
@@ -178,8 +180,8 @@ class Augment_Manager:
                 # If the class is not balanced even though use all basic augmentation techniques, then use noisy augmentation
                 elif remain > 0:
                     basic_aug_num = self.max_class_count - len(data_lst)
-                    if basic_aug_num > self.class_count[class_name] * number_of_basic_aug:
-                        basic_aug_num = self.class_count[class_name] * number_of_basic_aug
+                    if basic_aug_num > self.class_count[class_name] * number_of_basic_aug_method:
+                        basic_aug_num = self.class_count[class_name] * number_of_basic_aug_method
                     img_name_aug_arr = self.augmentation.augment_basic_data(data_lst, aug_path, basic_aug_num)
                     self.update_aug_data(img_name_aug_arr)
                     
@@ -190,7 +192,11 @@ class Augment_Manager:
                     self.update_aug_data(img_name_aug_arr)
 
 
-data = Dataset('GOOD DIES - Copy')
+path = 'D:\Chow\Projects\STI\\5class\GOOD DIES - Copy'
+data = Dataset(path)
 print(data.get_class_count())
-aug = Augment_Manager(data)
-aug.augment('GOOD DIES - Copy/augmented')
+aug = Augmentation()
+
+aug.augment_basic_data(data, path + '\\augmented', len(data) * 4)
+# aug = Augment_Manager(data)
+# aug.augment('GOOD DIES - Copy/augmented')

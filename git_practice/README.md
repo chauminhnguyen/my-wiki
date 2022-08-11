@@ -24,7 +24,7 @@ Check the history (Added, Modified, Deleted, Renamed, Copied, Updated but unmerg
 git status (-s)
 ```
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled.png)
+![Untitled](images/Untitled.png)
 
 # Git Show
 
@@ -34,7 +34,7 @@ Show files committed
 git show (--commit_id) (--name-only)
 ```
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%201.png)
+![Untitled](images/Untitled%201.png)
 
 # Git Log
 
@@ -46,7 +46,7 @@ git log (--graph) (--oneline) (--all)
 
 The user has committed ‘first’ and ‘second’
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%202.png)
+![Untitled](images/Untitled%202.png)
 
 # Git Reset
 
@@ -64,9 +64,9 @@ git reset --soft <commit>
 
 We have 3 commit showed by `gitlog` 
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%203.png)
+![Untitled](images/Untitled%203.png)
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%204.png)
+![Untitled](images/Untitled%204.png)
 
 ## Reset Hard
 
@@ -84,9 +84,9 @@ Revert all files and folders to the specific commit in local, then we can use `g
 git revert <commit>
 ```
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%205.png)
+![Untitled](images/Untitled%205.png)
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%206.png)
+![Untitled](images/Untitled%206.png)
 
 # Git Branch
 
@@ -113,15 +113,15 @@ git merge <branch_name>
 
 Concatenate the master and branch
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%207.png)
+![Untitled](images/Untitled%207.png)
 
 ```bash
 git rebase <branch_name>
 ```
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%208.png)
+![Untitled](images/Untitled%208.png)
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%209.png)
+![Untitled](images/Untitled%209.png)
 
 # Git Stash
 
@@ -137,7 +137,7 @@ List all the stack boxes
 git stash list
 ```
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%2010.png)
+![Untitled](images/Untitled%2010.png)
 
 Get the box <num>
 
@@ -151,7 +151,7 @@ Show the changes in the box <num>
 git stash show (stash@{<num>}) (-p)
 ```
 
-![Untitled](Gia%CC%81o%20a%CC%81n%20Git%20940d1379488d49a59708579be08a3f05/Untitled%2011.png)
+![Untitled](images/Untitled%2011.png)
 
 Just like `git stash apply` but delete the box in stack
 
